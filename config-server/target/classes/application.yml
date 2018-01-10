@@ -1,0 +1,26 @@
+server:
+  port: 8888
+
+eureka:
+  healthcheck: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+  
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      label: master
+      server:
+        git:
+          uri: http://gitlab.aegonthtf.com/xiejian/springCloudConfig.git
+          searchPaths: respo
+          username: xiejian
+          password: xiejian123
